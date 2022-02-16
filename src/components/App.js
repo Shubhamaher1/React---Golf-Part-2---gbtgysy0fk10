@@ -16,10 +16,10 @@ const App = () => {
   setBallPosition({left:"0px",top:"0px"})
   };
   const renderChoice = () => {
-    if (renderBall) {
-      return <div className="ball" style={{position:"absolute",left:ballPosition.left,top:ballPosition.top}}></div>
-  } else {
-      return <button onClick={buttonClickHandler} >Click For One Ball</button>
+    if (renderBall) 
+      return <div className="ball" style={{position:"absolute",left:ballPosition.left,top:ballPosition.top}}></div> 
+      else if(!renderBall) {
+        return <button onClick={buttonClickHandler} >Click For One Ball</button>
       }
   };
   useEffect(()=>{
