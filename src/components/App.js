@@ -9,8 +9,39 @@ const App = () => {
     left: "0px",
     top: "0px",
   });
-  const reset = () => {};
-  const renderChoice = () => {};
+  function buttonClickHandler(){
+    setRenderBall(true);
+  }
+  const reset = () => {setRenderBall(false)};
+  const renderChoice = () => {
+    if (renderBall) {
+      return <div className="ball" style={{position:"absolute",left:ballPosition.left,top:ballPosition.top}}></div>
+  } else {
+      return <button onClick={buttonClickHandler} >Click For One Ball</button>
+      }
+  };
+  useEffect(()=>{
+    document.addEventListener("keydown",(e)=>{
+       if(e.key==="ArrowRight"){
+           setBallPosition(prv=>({left:prv.left+5,
+          top:prv.top}))
+       }
+       if(e.key==="ArrowLeft"){
+        setBallPosition(prv=>({left:prv.left-5,
+       top:prv.top}))
+
+    }
+    if(e.key==="ArrowUp"){
+      setBallPosition(prv=>({left:prv.left,
+     top:prv.top-5}))
+  }
+  if(e.key==="ArrowDown"){
+    setBallPosition(prv=>({left:prv.left+5,
+   top:prv.top+5}))
+}
+    })
+
+},[])
 
   return (
     <div className="playground">
