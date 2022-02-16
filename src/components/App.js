@@ -13,9 +13,10 @@ function App () {
     setRenderBall(true);
   }
   const reset = () => {setRenderBall(false)
-  setBallPosition({left:0,top:0});
-  setX(0);
-  setY(0);
+    setBallPosition(prv=>({
+          
+        left:0,
+        top:0}))
   };
   function renderChoice(){
     if (renderBall==true) {
@@ -26,22 +27,25 @@ function App () {
         return <button className="start"  onClick={buttonClickHandler} >Click For One Ball</button>
       }
   };
+useEffect(()=>{
     document.addEventListener("keydown",update);
+    return( document.addEventListener("keydown",update))
+})
 
 function update(event){
   if(event.key==="ArrowRight"){
       setBallPosition(prv=>({
           
-          left:prv.left+5,
-          top:prv.top}))
+          left:ballPosition.left+5,
+          top:ballPosition.top}))
     //  setX(x+5)
      console.log("button right")
   }
   else if(event.key==="ArrowLeft"){
     setBallPosition(prv=>({
           
-        left:prv.left-5,
-        top:prv.top}))
+        left:ballPosition.left-5,
+        top:ballPosition.top}))
 //   setX(x-5)
 
   console.log("button left")
@@ -50,16 +54,16 @@ function update(event){
 else if(event.key==="ArrowUp"){
     setBallPosition(prv=>({
           
-        left:prv.left,
-        top:prv.top-5}))
+        left:ballPosition.left,
+        top:ballPosition.top-5}))
 // setY(y+5)
 console.log("button up")
 }
 else if(event.key==="ArrowDown"){
     setBallPosition(prv=>({
           
-        left:prv.left,
-        top:prv.top+5}))
+        left:ballPosition.left,
+        top:ballPosition.top+5}))
 // setY(y-5)
 console.log("button down")
 }
